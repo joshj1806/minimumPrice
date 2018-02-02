@@ -1,0 +1,11 @@
+[0m[[0m[0minfo[0m] [0m[0mPackaging /Users/josh/repos/scala/minimumPrice/target/scala-2.12/minimumprice_2.12-0.1.jar ...[0m
+[0m[[0m[0mdebug[0m] [0m[0mInput file mappings:[0m
+[0m[[0m[0mdebug[0m] [0m[0m	price[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /Users/josh/repos/scala/minimumPrice/target/scala-2.12/classes/price[0m
+[0m[[0m[0mdebug[0m] [0m[0m	price/Main$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /Users/josh/repos/scala/minimumPrice/target/scala-2.12/classes/price/Main$.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	price/Main.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /Users/josh/repos/scala/minimumPrice/target/scala-2.12/classes/price/Main.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	price/Main$delayedInit$body.class[0m
+[0m[[0m[0mdebug[0m] [0m[0m	  /Users/josh/repos/scala/minimumPrice/target/scala-2.12/classes/price/Main$delayedInit$body.class[0m
+[0m[[0m[0minfo[0m] [0m[0mDone packaging.[0m
