@@ -1,0 +1,5 @@
+package minimumprice
+
+class minimumpriceSuite {
+
+}
