@@ -1,41 +1,51 @@
 package minimumprice
 
-case class DB (val items: itemsType, val bundles: bundlesType)
+case class DB (bundles: Bundles)
 
 object DB {
 
-  var db : DB = DB(Map("Apple" -> 0.0), Map(Tuple2("Apple", "Banana") -> Tuple2(Tuple2(1, 0.9), Tuple2(1, 1.8))))
+  var db: Bundles = null
   var state: Int = 0
 
-  def initDataBase(a: DB): Unit = {
+  def initDataBase(bs: Bundles): Unit = {
     if (state == 0) {
-      db = a
+      db = bs
       state = 1
     } else {
       println("DB is already initialized")
     }
   }
 
-  def price(items: itemsType, purchase: purchaseType): Double = {
-    val priceOfItem = (item: String) => items.get(item)
-    val itemPrice = (pItem: Tuple2[String, Int]) => priceOfItem(pItem._1).get * pItem._2
-    purchase.map(x => itemPrice(x)).reduce(_+_)
+  def getBundlePrice(b: Set[Char]): Option[Double] = {
+    db.get(b)
   }
 
-  def minimumPrice(purchase: purchaseType): Double = {
-
-  var c = (ps: purchaseType) => {
-    for{
-      a <- ps
-      b <- ps
-    } yield (a._1, b._1)
-   }
-
-  var q = for {
-   x <- c(purchase)
-  } yield db.bundles.get(x)
-
-    0.0
+  def ksubsets(x: String, k: Int): List[Set[Char]] = {
+    x.toSet.subsets(k).toList
   }
+
+  def purchasePair(xs: List[Set[Char]], ys: List[Set[Char]]): Purchases = {
+
+    for {
+      x <- xs
+      y <- ys
+      if (x.intersect(y) == Set.empty)
+    } yield (x, y)
+  }
+
+  /*
+  def priceOfPurchase(p: Tuple2[Set[Char], Set[Char]]) = {
+    getBundlePrice(p._1) + getBundlePrice(p._2)
+  }
+
+  def minimuPrice(ps: Purchases): Unit = {
+    var prices = for {
+      p <- ps
+    } yield getBundlePrice(p)
+
+    prices.min
+  }
+*/
 
 }
+

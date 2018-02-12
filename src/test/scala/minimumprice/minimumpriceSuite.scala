@@ -7,42 +7,38 @@ import scala.collection.immutable.List
 
 class minimumpriceSuite extends FunSuite {
 
-  val abPair = Tuple2("Apple", "Banana")
-  val abDiscount = Tuple2(Tuple2(1, 0.9), Tuple2(1, 1.8))
+  val bundle = Map(Set('a') -> 1.0, Set('b') -> 2.0, Set('c') -> 3.0,
+    Set('a', 'b') -> 2.5, Set('a', 'c') -> 3.0)
 
-  val apples = Tuple2("Apple", "Apple")
-  val appleDiscount = Tuple2(Tuple2(1, 1.0), Tuple2(2, 1.0))
+  bundle.get(Set('a'))
 
-  val purchse = List(Tuple2("Apple", 1), Tuple2("Banana", 1))
+  val bundleDB = DB(bundle)
+  initDataBase(bundle)
 
-  val initItems = Map("Apple" -> 1.0, "Banana" -> 2.0)
-  val initBundles = Map(abPair -> abDiscount, apples -> appleDiscount)
+  test("getBundlePrice") {
 
-  initDataBase(DB(initItems, initBundles))
-
-  test("InitDB") {
-    assert(db == DB(initItems, initBundles))
+    assert(Some(1.0) == getBundlePrice(Set('a')))
   }
 
-  test("price test") {
-    assert(2.0 == price(initItems, purchse))
+  val a = ksubsets("abc", 1)
+  val b = ksubsets("abc", 2)
+
+  test("ksbuset") {
+    assert(List(Set('a', 'b'), Set('a', 'c'), Set('b', 'c'))  == b)
   }
 
-  test("minimumPrice") {
-    val minP = 0.0
-    val purchasedItem = List(Tuple2("Apple", 1))
-    assert(minP == minimumPrice(purchasedItem))
+
+  test("purchasePair") {
+     assert(List((Set('a'),Set('b', 'c')), (Set('b'),Set('a', 'c')), (Set('c'),Set('a', 'b'))) == purchasePair(a, b))
   }
 
-  test("min price case 2") {
-    val purchase = List(Tuple2("Apple", 1), Tuple2("Banana", 3))
-    assert((1 * 0.9 + 1 * 1.0 + 2 * 1.8 + 1 * 2.0) == minimumPrice(purchase))
+
+
+
+
+
+  test("Init DB") {
   }
 
-  test("min price case 3") {
-    val purchase = List(Tuple2("Apple", 2), Tuple2("Banana", 2))
-    // 5 or 2*0.9 + 2*2.0
-    assert((1.8 + 3) == minimumPrice(purchase))
-  }
 
 }

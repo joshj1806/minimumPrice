@@ -1,65 +1,20 @@
-import minimumprice.{DB, purchaseType}
+import minimumprice.DB
 import minimumprice.DB._
 
-import scala.collection.SortedSet
+  val bundle = Map(Set('a') -> 1.0, Set('b') -> 2.0, Set('c') -> 3.0,
+    Set('a', 'b') -> 2.5, Set('a', 'c') -> 3.0)
 
-  val abPair = Tuple2("Apple", "Banana")
-  val abDiscount = Tuple2(Tuple2(1, 0.9), Tuple2(1, 1.8))
+  bundle.get(Set('a'))
 
-  val apples = Tuple2("Apple", "Apple")
-  val appleDiscount = Tuple2(Tuple2(1, 1.0), Tuple2(2, 1.0))
+  val bundleDB = DB(bundle)
+  initDataBase(bundle)
 
-  val purchse = List(Tuple2("Apple", 1), Tuple2("Banana", 1))
+  getBundlePrice(Set('a'))
 
-  val initItems = Map("Apple" -> 1.0, "Banana" -> 2.0)
-  val initBundles = Map(abPair -> abDiscount, apples -> appleDiscount)
+  val a = ksubsets("abc", 1)
+  val b = ksubsets("abc", 2)
 
-  initDataBase(DB(initItems, initBundles))
-  db.items
-  db.bundles
-
-  val purchase1 = List(Tuple2("Apple", 1), Tuple2("Banana", 1))
-  val purchase2 = List(Tuple2("Apple", 2))
-
-  var p = price(initItems, purchase2)
-
-  var c = (ps: purchaseType) => {
-    for{
-      a <- ps
-      b <- ps
-    } yield (a._1, b._1)
-   }
-
-  var q = for {
-   x <- c(purchase1)
-  } yield db.bundles.get(x)
-
-  def mPrice(purchase: purchaseType): Double = {
-
-    // find a bundle with minimum price case.
-   var c = (ps: purchaseType) => {
-    for{
-      a <- ps
-      b <- ps
-    } yield SortedSet(a._1, b._1)
-   }.toSet
-
-    // call with rest of item
-    /*
-    for (item <- purchase.map(t => t._2)
-         if db.bundles.get(item))
-      yield println(item)
-      */
-
-    0.0
-  }
-
-
-
-
-
-
-
+  val ab = purchasePair(a, b)
 
 
 

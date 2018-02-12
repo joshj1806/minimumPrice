@@ -20,4 +20,3 @@
     ## limitation
     In real life implementation, there must be another field within item entity to indicate the type of item.
     You can imagine, item 'a' is an apple and 'b' is a banana. Or 'a' and 'b' both are apples.
-    
